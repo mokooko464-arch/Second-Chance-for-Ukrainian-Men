@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Помощь при выезде</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:Arial,sans-serif;color:#222;background:#f4f7fb;}
+.container{max-width:1200px;margin:auto;padding:0 20px;}
+
+/* HERO - фото чуть меньше, центрированное */
+.hero{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  padding:40px 0;
+}
+
+.hero img{
+  width:85%;          /* чуть меньше, чем раньше */
+  max-width:1000px;   /* ограничиваем ширину */
+  height:auto;
+  object-fit:cover;   
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.2);
+  margin-bottom:30px;
+}
+
+.hero h1{
+  font-size:42px;
+  margin-bottom:15px;
+}
+
+.hero p{
+  font-size:24px;
+  margin-bottom:20px;
+}
+
+.btn{
+  display:inline-block;
+  background:#ffcc00;
+  color:black;
+  padding:15px 45px;
+  font-size:20px;
+  border-radius:8px;
+  text-decoration:none;
+  transition:0.3s;
+}
+.btn:hover{background:#ffb300;}
+
+/* SECTIONS */
+.section{
+  padding:80px 20px;
+  text-align:center;
+}
+.section h2{
+  font-size:34px;
+  margin-bottom:50px;
+  opacity:0;
+  animation:fadeInUp 1s forwards;
+}
+.cards{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+}
+.card{
+  background:white;
+  padding:30px;
+  width:280px;
+  border-radius:12px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  transition:0.3s;
+  opacity:0;
+  transform:translateY(50px);
+}
+.card:hover{transform:translateY(-5px);}
+.icon{font-size:50px;margin-bottom:15px;}
+.trust{background:#e3f2fd;}
+
+/* FOOTER */
+footer{
+  background:#0d47a1;
+  color:white;
+  text-align:center;
+  padding:50px 20px;
+}
+footer .btn{margin-top:15px;}
+
+/* Анимации */
+@keyframes fadeInUp{
+  to{opacity:1; transform:translateY(0);}
+}
+
+@media(max-width:768px){
+  .cards{flex-direction:column;align-items:center;}
+  .hero h1{font-size:32px;}
+  .hero p{font-size:20px;}
+  .btn{font-size:18px;padding:12px 35px;}
+  .hero img{width:100%; height:auto;}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <img src="photo.jpg" alt="Главное фото">
+  <h1>Помощь мужчинам при выезде в Молдову</h1>
+  <p>Оплата только после безопасного пересечения границы</p>
+  <a href="https://t.me/ВАШ_ЛИНК" class="btn">Связаться через Telegram</a>
+</div>
+
+<!-- Как это работает -->
+<div class="section">
+  <div class="container">
+    <h2>Как это работает</h2>
+    <div class="cards">
+      <div class="card" style="animation-delay:0.2s; animation:fadeInUp 1s forwards;">
+        <div class="icon">📲</div>
+        <h3>1. Связь</h3>
+        <p>Вы пишете нам в Telegram</p>
+      </div>
+      <div class="card" style="animation-delay:0.4s; animation:fadeInUp 1s forwards;">
+        <div class="icon">🗺️</div>
+        <h3>2. План</h3>
+        <p>Получаете пошаговый план действий</p>
+      </div>
+      <div class="card" style="animation-delay:0.6s; animation:fadeInUp 1s forwards;">
+        <div class="icon">🚗</div>
+        <h3>3. Пересечение</h3>
+        <p>Безопасный выезд в Молдову</p>
+      </div>
+      <div class="card" style="animation-delay:0.8s; animation:fadeInUp 1s forwards;">
+        <div class="icon">💳</div>
+        <h3>4. Оплата</h3>
+        <p>Оплата только после пересечения</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Почему доверяют -->
+<div class="section trust">
+  <div class="container">
+    <h2>Почему нам доверяют</h2>
+    <div class="cards">
+      <div class="card" style="animation-delay:0.2s; animation:fadeInUp 1s forwards;">
+        <div class="icon">🛡️</div>
+        <h3>Безопасность</h3>
+      </div>
+      <div class="card" style="animation-delay:0.4s; animation:fadeInUp 1s forwards;">
+        <div class="icon">🔒</div>
+        <h3>Конфиденциальность</h3>
+      </div>
+      <div class="card" style="animation-delay:0.6s; animation:fadeInUp 1s forwards;">
+        <div class="icon">🤝</div>
+        <h3>Поддержка 24/7</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Есть вопросы? Напишите нам</p>
+    <a href="https://t.me/ВАШ_ЛИНК" class="btn">Telegram</a>
+    <p style="margin-top:20px;">© 2026</p>
+  </div>
+</footer>
+
+<script>
+const cards = document.querySelectorAll('.card');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.animationPlayState='running';
+      observer.unobserve(entry.target);
+    }
+  });
+},{threshold:0.2});
+cards.forEach(card=>observer.observe(card));
+</script>
+
+</body>
+</html>
